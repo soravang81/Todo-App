@@ -40,15 +40,8 @@ app.get("/todos" , async (req,res)=>{
 
 app.put("/completed" ,async (req,res)=>{
     const inputs = req.body;
-    const isParsed = createTodo.safeParse(inputs);
-    if(!isParsed.success){
-        res.status(411).json({
-            error : "invalid inputs !"
-        })
-        return;
-    }
-    const updatetodo = await Todo_App.updateOne(
-        _id = inputs._id
+    await Todo_App.updateOne(
+        _id = inputs
     ,{
         completed : true
     })

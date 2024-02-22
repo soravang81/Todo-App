@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function CreateTodo(){
+export function CreateTodo({onAddTodo}){
     const [newTitle,setNewTitle] = useState("")
     const [newDescription,setNewDescription] = useState("")
     const newTodo = {
@@ -9,13 +9,14 @@ export function CreateTodo(){
         completed : false
     }
     async function sendTodo(){
+        console.log(JSON.stringify(newTodo))
         const res = await fetch("http://localhost:3000/todo", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },body: JSON.stringify(newTodo)
         }); 
-         
+         onAddTodo();
     }
     function changeValue1(e){
         setNewTitle(e.target.value);

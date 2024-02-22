@@ -20,8 +20,10 @@ export function ShowTodos({ todos, onUpdateTodo }) {
         <div key={index}>
           <h1>{todo.title}</h1>
           <h2>{todo.description}</h2>
-          <h2>{todo.completed}</h2>
-          <button onClick={() => markDone(todo._id)}>Mark as Complete</button>
+          <h2>{todo.completed ? "Completed" : "Incomplete"}</h2>
+          <button onClick={() => markDone(todo._id)}>
+            {todo.completed ? "Mark as Incomplete" : "Mark as Complete"}
+          </button>
         </div>
       ))}
     </div>

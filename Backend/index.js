@@ -38,16 +38,27 @@ app.get("/todos" , async (req,res)=>{
     res.json({todo})
 })
 
-app.put("/completed" ,async (req,res)=>{
-    const inputs = req.body;
-    await Todo_App.updateOne(
-        _id = inputs
-    ,{
-        completed : true
-    })
-    res.json({
-        msg : "Marked completed !"
-    })
-})
+app.put("/completed", async (req, res) => {
+    const { _id } = req.body;
+    try {
+        const todo = await Todo_App.findById(_id); 
+        if (todo) {
+            todo.completed = !todo.completed;
+            await todo.save();
+            res.json({
+                msg: "Marked completed/incomplete!"
+            });
+        } else {
+            res.status(404).json({
+                error: "Todo item not found!"
+            });
+        }
+    } catch (error) {
+        console.error("Error updating todo item:", error);
+        res.status(500).json({
+            error: "Internal Server Error"
+        });
+    }
+});
 
 app.listen(3000);

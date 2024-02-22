@@ -17,7 +17,7 @@ function App() {
   return (
     <div>
       <CreateTodo onAddTodo={getData}/>
-      <ShowTodos todos={todos}/>
+      <ShowTodos todos={todos} onUpdateTodo={getData} />
     </div>
   )
 }

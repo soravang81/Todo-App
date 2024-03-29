@@ -1,6 +1,6 @@
-## Todo app
+## Todo app (kiddy project)
 
-This a a simple todo app with the following functions :
+This a a simple todo app with the following functions (only functionality no styling):
 
 - Can add a new todo.
 - Can get the list of all the todos.
